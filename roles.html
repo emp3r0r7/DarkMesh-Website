@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DarkMesh Network - Ruoli Mesh</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+</head>
+<body>
+
+  <main>
+
+    <section class="intro" style="border-left: 6px solid #d73a49">
+      <h2>DARKMESH DEVICE ROLES</h2>
+
+      <p>
+        <strong>
+          In una rete mesh efficiente non tutti i nodi devono comportarsi allo stesso modo.
+          Assegnare il ruolo corretto a ciascun dispositivo è fondamentale per evitare congestione,
+          collisioni radio e degrado generale delle prestazioni.
+        </strong>
+      </p>
+
+      <p>
+        Immagina una città con molti utenti Meshtastic: tutti con un modulo LoRa collegato al telefono,
+        tutti attivi, tutti configurati con le impostazioni predefinite. In questo scenario ogni messaggio
+        viene ritrasmesso da quasi ogni nodo, inclusi dispositivi mobili in movimento, nodi domestici e
+        apparati temporanei. Il risultato è un flooding incontrollato: copie multiple dello stesso pacchetto,
+        collisioni sul canale radio, perdita di messaggi e latenza crescente.
+      </p>
+
+      <p>
+        La soluzione non è ridurre il numero di nodi, ma assegnare a ciascuno un ruolo appropriato in base
+        alla sua funzione reale nella rete. In Meshtastic il ruolo di un dispositivo determina se il nodo
+        ritrasmette i pacchetti degli altri, con quale comportamento operativo e con quale impatto sul canale condiviso.
+      </p>
+
+      <h3>Perché i ruoli sono importanti</h3>
+      <ul>
+        <li>Ridurre il flooding incontrollato e le ritrasmissioni inutili.</li>
+        <li>Limitare collisioni e congestione del canale radio.</li>
+        <li>Migliorare affidabilità e latenza della mesh in contesti ad alta densità.</li>
+        <li>Ottimizzare l’autonomia energetica dei nodi mobili.</li>
+        <li>Costruire una dorsale stabile con i nodi fissi meglio posizionati.</li>
+      </ul>
+
+      <h3>CLIENT_MUTE: il nodo mobile corretto</h3>
+      <p>
+        Il ruolo <strong>CLIENT_MUTE</strong> è pensato per dispositivi mobili: nodi associati a uno smartphone,
+        tracker personali o apparati che si spostano con l’utente. Un nodo con questo ruolo riceve i messaggi
+        destinati alla mesh, invia i propri pacchetti, ma non ritrasmette il traffico degli altri nodi.
+      </p>
+
+      <p>
+        Questo approccio è ideale per i dispositivi in movimento. Un nodo che cambia continuamente posizione
+        non rappresenta un buon punto di inoltro: la qualità radio varia nel tempo, la topologia locale cambia
+        rapidamente e ogni ritrasmissione può risultare ridondante o persino dannosa. Inoltre, evitando di fare relay,
+        il dispositivo consuma meno batteria, caratteristica molto utile in ambito mobile.
+      </p>
+
+      <p>
+        <strong>Regola pratica:</strong> se il tuo nodo Meshtastic è collegato al telefono e lo porti con te,
+        impostalo come <strong>CLIENT_MUTE</strong>.
+      </p>
+
+      <h3>CLIENT_BASE: il nodo fisso che sostiene la rete</h3>
+      <p>
+        Il ruolo <strong>CLIENT_BASE</strong> è indicato per i nodi fissi installati in posizioni stabili e favorevoli:
+        finestre alte, balconi, terrazzi, tetti o altri punti con buona copertura radio e alimentazione continua.
+        A differenza di un nodo mobile, questo tipo di dispositivo partecipa attivamente all’inoltro dei pacchetti
+        contribuendo ad ampliare la portata effettiva della mesh.
+      </p>
+
+      <p>
+        Una caratteristica particolarmente importante di <strong>CLIENT_BASE</strong> è il supporto dello
+        <strong>zero cost hop</strong>. In pratica, il nodo può inoltrare un pacchetto senza consumare uno hop
+        del contatore massimo. Questo permette ai messaggi di attraversare la rete mantenendo più capacità residua
+        di propagazione, migliorando l’estensione complessiva della mesh senza dover aumentare artificialmente
+        il numero di hop configurati.
+      </p>
+
+      <p>
+        In ambiente urbano questo comportamento è estremamente utile: i nodi fissi ben posizionati possono creare
+        una dorsale affidabile tra quartieri, mantenere continuità di copertura e instradare il traffico in modo
+        molto più efficiente rispetto a un insieme di nodi mobili che ritrasmettono tutti indiscriminatamente.
+      </p>
+
+      <p>
+        <strong>Regola pratica:</strong> se hai un nodo fisso, alimentato stabilmente e installato in una buona posizione,
+        impostalo come <strong>CLIENT_BASE</strong>.
+      </p>
+
+      <h3>Conclusione</h3>
+      <p>
+        Una mesh efficiente non nasce dal numero di nodi presenti, ma dalla qualità della loro configurazione.
+        I nodi mobili dovrebbero comportarsi come terminali silenziosi, mentre i nodi fissi e ben collocati
+        dovrebbero costituire l’infrastruttura di inoltro della rete. È questa distinzione che permette alla mesh
+        di crescere senza degradarsi.
+      </p>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>DarkMesh 2026 — Chris</p>
+  </footer>
+
+</body>
+</html>

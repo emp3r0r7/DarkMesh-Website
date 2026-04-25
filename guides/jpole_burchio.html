@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DarkMesh Network</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" type="image/x-icon" href="/images/skull.ico">
+</head>
+<body>
+  <header>
+    <h1>📡 Super JPole by Burchio642</h1>
+  </header>
+  
+  <main>
+        <a href="/index.html" class="btn-home">← Home</a>
+
+    
+    <p style="text-align:center">
+      Guida semplice ed efficace su come costruire una JPole.
+    </p>
+
+<div class="pdf-container">
+  <object data="/guides/content/superjpole.pdf" 
+          type="application/pdf" 
+          class="pdf-viewer">
+    <p>Il tuo browser non supporta i PDF. 
+       <a href="/guides/content/superjpole.pdf">Scarica il PDF</a>.
+    </p>
+  </object>
+</div>
+
+<style>
+.pdf-container {
+  display: flex;
+  justify-content: center;  /* Centra orizzontalmente */
+  align-items: center;      /* Centra verticalmente */
+  width: 100%;
+  min-height: 100vh;        /* Altezza minima tutta la viewport */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.pdf-viewer {
+  width: 100%;
+  max-width: 1200px;        /* Larghezza massima */
+  height: 800px;            /* Altezza fissa o adattiva */
+  border: none;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1); /* Ombra opzionale */
+  border-radius: 8px;       /* Angoli arrotondati opzionali */
+}
+
+/* mobile */
+@media (max-width: 768px) {
+  .pdf-container {
+    padding: 10px;
+    min-height: 90vh;
+  }
+  
+  .pdf-viewer {
+    height: 600px;
+    max-width: 100%;
+  }
+}
+</style>
+  </main>
+
+  <footer>
+    <p>DarkMesh 2025 — Chris</p>
+  </footer>
+</body>
+</html>

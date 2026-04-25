@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DarkMesh Network</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+</head>
+<body>
+  <header>
+    <h1>📻 Radio LoRa 📻</h1>
+  </header>
+  
+  <main>
+    
+    <a href="index.html" class="btn-home">← Home</a>
+  
+  
+    <section class="intro">
+
+    <h2>// HeltecV4 <a href="https://a.aliexpress.com/_EISAt00" target="_blank">a.aliexpress.com/_EISAt00</a></h2>
+    
+      
+  <p>
+  La Heltec WiFi LoRa 32 V4 è una board IoT compatta e potente basata su ESP32-S3R2 e SX1262, compatibile pin-to-pin con la V3 ma con importanti upgrade: 16MB di Flash esterna, 2MB di PSRAM, LoRa ad alta potenza fino a 28 dBm, antenna Wi-Fi/BLE integrata FPC con IPEX, gestione avanzata della batteria con supporto solare, interfacce dedicate per GNSS e pannello solare e consumo ultra-low power (&lt;20µA). Ideale per progetti LoRaWAN, Meshtastic e mesh networking, supporta Arduino, PlatformIO, ESP-IDF e MicroPython.
+  </p>
+
+
+    
+    <img src="/images/v4/1.jpg" alt="HeltecV4 1" style="display:block; width:100%; margin:0; padding:0;">
+    
+    <p>
+    L’immagine mostra una misura durante la fase di trasmissione, in cui il nodo LoRa può raggiungere picchi di potenza RF fino a circa 0,69 W, come rilevato dal wattmetro digitale ReDot con carico fittizio. Durante questi picchi di TX, l’assorbimento lato alimentazione può arrivare a circa 0,84 A a 5,06 V, per una potenza elettrica istantanea di circa 4,25 W, valore tipico per trasmissioni LoRa ad alta potenza che coinvolgono simultaneamente il front-end RF e l’ESP32 in piena attività.
+    </p>
+
+    
+    
+    <img src="/images/v4/5.jpg" alt="HeltecV4 5" style="display:block; width:100%; margin:0; padding:0;">
+   
+   <p>
+     Dopo numerose trasmissioni e letture consecutive, la potenza RF misurata si stabilizza attorno a 0,5 W, come mostrato dal wattmetro digitale ReDot, valore pienamente coerente con i 28 dBm dichiarati dal produttore. Questo comportamento indica che i picchi iniziali osservabili in TX tendono a normalizzarsi su un livello di 
+      potenza stabile e ripetibile durante il funzionamento continuativo.
+  </p>
+  
+      <img src="/images/v4/idle.jpg" alt="Idle" style="display:block; width:100%; margin:0; padding:0;">
+
+     <p>
+  In condizioni di idle con Bluetooth attivo, il consumo della board si attesta intorno a 0,11 A a 5,05 V, come evidenziato dalla misura tramite USB tester, valore dovuto al mantenimento dello stack BT e del clock RF attivo sull’ESP32-S3. Disabilitando il Bluetooth, il consumo torna su valori comparabili a quelli della WiFi LoRa 32 V3, attestandosi tipicamente nell’ordine dei 40–50 mA in idle.
+  </p>
+
+    </section>
+    
+    
+    <section class="intro">
+      
+    
+    <h2>// LilyGo T-BEAM 1 Watt <a href="https://lilygo.cc/products/t-beam-1w?variant=52020061733045" target="_blank">lilygo.cc/products/t-beam-1w</a></h2>
+<p>
+Questa board di sviluppo è basata su MCU ESP32-S3 dual-core LX7 e integra 16MB di Flash e 8MB di PSRAM, offrendo risorse adeguate per applicazioni complesse e interfacce avanzate. Supporta Wi-Fi 2.4 GHz e Bluetooth 5 LE, è dotata di PMU AXP2101 per una gestione energetica efficiente e include pulsanti onboard per Boot, Reset e Power. Compatibile con Arduino e PlatformIO, è ideale per ingegneri, studenti e maker che desiderano sviluppare rapidamente progetti IoT e wireless.
+  Ringraziamento speciale a 🥭MANGO🥭 per aver permesso il test di questo dispositivo.
+</p>
+
+   <img src="/images/tbeam1w/0.jpg" alt="Tbeam 0" style="display:block; width:100%; margin:0; padding:0;">
+      <img src="/images/tbeam1w/10.jpg" alt="Tbeam 1" style="display:block; width:100%; margin:0; padding:0;margin-top:20px">
+   <img src="/images/tbeam1w/1.jpg" alt="Tbeam 1" style="display:block; width:100%; margin:0; padding:0;margin-top:20px">
+
+<p>
+La sezione RF LoRa integra un amplificatore di potenza esterno basato su modulo 16P358, operante nella banda 830–950 MHz e accreditato per una potenza massima compresa tra 30 e 35 dBm. In questa board l’amplificatore viene pilotato in modo conservativo dal transceiver SX1262 per fornire i 28 dBm dichiarati, garantendo maggiore stabilità, linearità e margine operativo rispetto a una soluzione senza PA esterno, senza spingere il dispositivo ai limiti massimi nominali del modulo.
+</p>
+
+
+
+   <img src="/images/tbeam1w/2.jpg" alt="Tbeam 1" style="display:block; width:100%; margin:0; padding:0;">
+
+<p>
+Nella configurazione mostrata, durante la trasmissione la board raggiunge una potenza RF in uscita di circa 0,8–0,82 W, come rilevato dal wattmetro digitale ReDot. Contestualmente, l’assorbimento lato alimentazione sale fino a circa 1,15 A a 5,05 V. Questi valori rappresentano il consumo e la potenza emessa durante i picchi di TX, includendo l’attività del PA esterno, del front-end RF e dell’ESP32 in piena operatività.
+</p>
+
+
+  <img src="/images/tbeam1w/12.jpg" alt="Tbeam 7" style="display:block; width:100%; margin:0; padding:0;">
+  
+<p>
+Il valore PP visualizzato dal wattmetro indica la Peak Power, ovvero la massima potenza istantanea rilevata durante la trasmissione; tale valore può superare la potenza media (FP) a causa della natura impulsiva del segnale e dei transienti del PA, e non rappresenta la potenza continua di emissione.
+</p>
+
+
+  <img src="/images/tbeam1w/6.jpg" alt="Tbeam 6" style="display:block; width:100%; margin:0; padding:0;">
+
+  <p>
+  In condizioni di idle, con la sezione RF non attiva, il consumo della board si attesta intorno a 0,24 A a circa 5,02 V con Bluetooth acceso.
+  </p>
+
+    </section>
+
+  </main>
+
+  <footer>
+    <p>DarkMesh 2025 — Chris</p>
+  </footer>
+</body>
+</html>

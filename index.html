@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DarkMesh Network</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+</head>
+<body>
+ <header style="
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+">
+  <img 
+    src="/images/dmlogo4.png" 
+    alt="DM LOGO"
+    style="
+      width: 80px;
+      height: auto;
+      display: block;
+      margin: 0;
+      padding: 0;
+    "
+  >
+  <h1 style="
+    margin: 8px 0 0 0;
+    font-size: 2rem;
+  ">
+    DarkMesh
+  </h1>
+</header>
+  <main>
+
+<section class="intro" style="border-left: 6px solid #d73a49">
+    
+      <h2>DISCLAIMER</h2>
+      <p>
+      <strong>
+        L'applicazione Android ed il firmware Darkmesh sono forniti senza alcuna garanzia di funzionamento o affidabilità, né espressa né implicita.
+        L’utilizzo avviene a totale responsabilità dell’utente.
+        L'autore del software declina ogni responsabilità per eventuali violazioni di normative, danni diretti, indiretti, accidentali o consequenziali derivanti dall’uso, dall'uso improprio o dall’impossibilità di utilizzo del software. <br>
+        L’utilizzo del software comporta l’accettazione implicita delle condizioni sopra indicate.
+      </strong>
+    </p>
+    
+    <div>
+  <strong>DarkMesh è progettato esclusivamente per un utilizzo FULL-OFFGRID.</strong><br>
+  Se prevedi di usare MQTT o di controllare il nodo da remoto tramite Wi-Fi,
+  questo progetto <strong>non è adatto</strong> al tuo caso d’uso.
+</div>
+<hr style="margin:20px 0; border:1px solid #333">
+
+<h2>NO SUPPORT POLICY</h2>
+
+<p>
+<strong>
+L’autore del progetto DarkMesh non fornisce supporto tecnico individuale,
+assistenza personalizzata, debug remoto o consulenza diretta tramite
+Telegram, email o messaggi privati.
+</strong>
+</p>
+
+<p>
+Il progetto è destinato esclusivamente a utenti con competenze tecniche avanzate,
+in grado di operare in autonomia su firmware embedded, flashing manuale,
+diagnostica tramite log e risoluzione di problemi hardware e software. Il comportamento dell'applicazione si trova nel codice sorgente, pubblico, chiunque può leggerlo, analizzarlo staticamente e avere le risposte a ogni domanda.</p>
+
+<p>
+Eventuali segnalazioni di malfunzionamenti possono essere effettuate
+<strong>esclusivamente tramite i repository GitHub, sottomettendo una dettagliata issue </strong>,
+corredata da informazioni tecniche complete
+(versione firmware, hardware utilizzato, log, configurazione, come riprodurre l'errore in tutti i suoi dettagli).
+</p>
+
+<p>
+Segnalazioni generiche del tipo <em>“non funziona”</em>, richieste di assistenza
+di base o domande poste al di fuori di  questi canali 
+<strong>non verranno prese in considerazione</strong>.
+</p>
+</section>
+
+<section class="intro">
+      <h2>MESH NETIQUETTE</h2>
+        <p>
+          La rete mesh in Italia sta crescendo rapidamente. Questa netiquette nasce come riferimento condiviso per promuovere comportamenti responsabili e costruire insieme uno spazio libero, aperto e rispettoso.
+          <a href="/netiquette.html" target="_blank">Qui trovi le linee guida </a> per contribuire al buon funzionamento della rete.
+        </p>
+
+</section>
+
+<section class="intro">
+  <h2>MESH ROLES</h2>
+  <p>
+    I ruoli definiscono il comportamento dei nodi nella rete Meshtastic: scegliere correttamente tra dispositivi mobili (CLIENT_MUTE) e nodi fissi (CLIENT_BASE) è fondamentale per evitare flooding, ridurre le collisioni radio e garantire una mesh stabile ed efficiente. 
+    <a href="/roles.html" target="_blank">Leggi i consigli sui ruoli.</a>
+  </p>
+</section>
+
+<section class="intro">
+      <h2>DARKMESH</h2>
+  <p>
+    <strong>DarkMesh</strong> è un fork indipendente e uno sviluppo autonomo Android/Firmware del progetto 
+    <strong>Meshtastic</strong>, con un focus su <em>messaggi schedulati, affidabilità e inoltro metadati su mappe online (non di default ma configurabile).</em>
+  </p>
+
+  <p>
+    Progettato per utenti avanzati e operatori sul campo, DarkMesh introduce una serie di funzioni inedite che 
+    migliorano l’esperienza di rete decentralizzata e l’interazione tra nodi.
+  </p>
+
+  <h3 style="color:#76FF03"> // DarkMesh Android Notes</h3>
+  <ul>
+    <li><strong>Hunting Mode</strong> — invia in tempo reale le telemetrie dei nodi a un <a href="https://maps.loracity.it/" target="_blank">server remoto per la visualizzazione su mappa dinamica.</a> Breve guida <a href="https://mesh.loracity.it/mappa-dei-nodi-meshtastic-ricevuti-via-radio/" target="_blank">qui!</a></li>
+    <li><strong>Message Scheduling</strong> — pianifica l’invio di messaggi privati o di gruppo a orari specifici.</li>
+    <li><strong>Beaconing</strong> — consente l’invio periodico di beacon con testo personalizzato, utile per segnalazione o identificazione automatica.</li>
+    <li><strong>Gateway Detection</strong> — l'applicazione è in grado di rilevare quale nodo più vicino ci permette di comunicare con la mesh combinando 3 logiche separate per aumentare la precisione della rilevazione.</li>
+    <li><strong>Reply Messages</strong> — è possibile fare swipe to reply su ogni messaggio invece che onetap al contrario della release ufficiale.</li>
+    <li><strong>Traceroute Visualization</strong> — è possibile visualizzare il traceroute di andata e ritorno sulla mappa con colori distinti e la distanza totale percorsa.</li>
+    <li><strong>Efficient Plus Codes</strong> — è possibile configurare il distress beacon utilizzando Plus Codes brevi all’interno dei messaggi di testo, codificati tipicamente in ~8–9 caratteri ASCII. Questo riduce significativamente la dimensione del payload sulla mesh, diminuendo l’airtime e migliorando l’affidabilità della comunicazione.</li>
+     <li><strong>NodeDb import/export</strong> — Feature che permette l'esportazione e l'importazione di nodi in formato .dmdb per poi poterlo reimportare successivamente. Utile per salvare ad esempio una lista di nodi comprendente una zona specifica. La feature permette di poter salvare anche solo i nodi preferiti.</li>
+     <li>
+  <strong>Compressione messaggi Unicode</strong> DarkMesh introduce la compressione dei messaggi, riducendo il payload (es. da ~30 a ~20 caratteri), con conseguente traffico radio più leggero, migliore efficienza su LoRa e maggiore probabilità di consegna, è supportata solo da firmware DarkMesh.
+    </li>
+
+
+
+  </ul>
+
+  <p>
+    DarkMesh Android è inoltre più <strong>verbosa</strong>: l’app notifica con <em>toast</em> ogni volta che un messaggio viene ritrasmesso o viene eseguito un trace verso il proprio nodo, 
+    offrendo piena trasparenza sugli eventi di rete.
+  </p>
+  
+  <h3 style="color:#4FD1C5">// DarkMesh Firmware Notes</h3>
+
+<ul>
+
+  <li>
+    <strong>Sleep recovery Patch</strong> — il firmware è stato patchato per
+    evitare il blocco in <em>sleep infinito</em> quando la batteria di un nodo
+    si scarica completamente, garantendo il corretto riavvio al ripristino
+    dell’alimentazione.
+  </li>
+  
+    <li>
+    <strong>Auto Zero Cost Hop</strong> — automazione che permette l'inserimento
+    automatico dei nodi infrastruttura come preferiti se il nodo stesso è un nodo infrastruttura.
+  </li>
+  
+      <li>
+    <a href="https://darkmesh.neocities.org/console_module" target="_blank">Console Module</a> — funzionalità che permette di poter dialogare con un nodo opportunamente
+    configurato per ricevere telemetrie istantanee.
+  </li>
+  
+  
+  
+   <li>
+    <strong>Silent Mode (INTERNAL - ESP32 Only)</strong>
+  </li>
+  
+  <li>
+    <strong>Probe Mode (INTERNAL) </strong>
+  </li>
+
+</ul>
+
+
+</section>
+
+<section class="intro">
+  <h2>// DarkMesh Android Repository</h2>
+  <p>
+    Il codice sorgente di <strong>DarkMesh</strong> è disponibile pubblicamente su GitHub.
+    Chiunque può scaricarlo, modificarlo o contribuire al progetto nel rispetto della licenza open source.
+  </p>
+
+  
+  Ultima release disponibile:
+  
+  <p>
+    🔗 <a href="https://github.com/emp3r0r7/DarkMesh/releases/" target="_blank">https://github.com/emp3r0r7/DarkMesh/releases</a>
+  </p>  
+  
+  <p class="license">
+    Rilasciato sotto licenza <strong>GNU General Public License v3.0</strong> (GPL-3.0).
+  </p>
+</section>
+
+<section class="intro">
+  <h2 style="color:#4FD1C5">// DarkMesh Firmware Precompiled Bins & Repository</h2>
+  
+    
+  <p> 
+     Firmware Repository: <br>
+     🔗 <a href="https://emp3r0r7.github.io/DarkMesh-Firmware/" target="_blank">https://emp3r0r7.github.io/DarkMesh-Firmware/</a>
+
+  </p>
+  <p>
+  Ogni <strong>branch</strong> del repository corrisponde a una specifica <strong>versione del firmware</strong> (forkata dal repo di Meshtastic); per questo motivo è necessario utilizzare <strong>Git</strong> per navigare tra i vari branch e selezionare quello associato alla versione di interesse.
+</p>
+  
+  <p>
+    Binari precompilati di <strong>DarkMesh-Firmware</strong> disponibili pubblicamente su Google Drive.
+  </p>
+  
+    Il nome della cartella versionata corrisponde alla funzionalità principale rilasciata.  
+    Eg. <strong>2.7.15-PowerPatch</strong> corrisponde al firmware che risolverà la problematica di sleep infinito quando la batteria
+    viene scaricata completamente più funzioni presenti cross-feature.
+  <p>
+    🔗 <a href="https://drive.google.com/drive/folders/1R12o5sUL3X4_yANCiAAvVCajvS4zMxD3?usp=sharing" 
+    target="_blank">https://drive.google.com/drive/darkmesh-firmware</a>
+  </p>  
+
+  <p>
+    
+  </p>
+  <h3 style="color:#76FF03"> // PowerPatch Notes: </h3>
+  <ul>
+    
+  <li>
+    Threshold a 3.4V con deepsleep per protezione batteria con conseguente retry ogni 12ore e check batteria, se è carica (>3.4V) il dispositivo
+    torna a funzionare, altrimenti sleep di nuovo fino alla prossima iterazione dopo altre 12ore.
+  </li>
+  
+  <li>
+    Traceroute con cooldown a 5 secondi di default.
+  </li>
+  
+  <li>
+    TX EU868 sbloccato lato FW potenza in uscita fino a 30dbm in base alle capabilities dell'hardware (le regole le sai, se qualcuno ti viene a cercare la responsabilità è tua.).
+    La potenza in uscita è comunque regolabile, è stato solo tolto il blocco a 27dbm.
+  </li>
+
+</ul>
+  
+</section>
+
+
+<section class="intro">
+
+  <h2>// DarkMesh Telegram Channel</h2>
+
+  <p>
+    È disponibile un canale Telegram ufficiale dedicato a <strong>DarkMesh</strong>,
+    utilizzato esclusivamente per aggiornamenti, annunci e comunicazioni importanti
+    relative allo sviluppo del progetto.
+  </p>
+
+  <p>
+    ⚠️ <strong>Il canale non è un gruppo di supporto</strong>: non è possibile inviare messaggi,
+    fare domande o richiedere assistenza diretta.
+  </p>
+
+  <p>
+    Tutte le informazioni tecniche, guide e aggiornamenti vengono pubblicati
+    direttamente nel canale.
+  </p>
+
+  <div style="text-align: center; margin-top: 15px;">
+    <a href="https://t.me/darkmesh_lora"
+       target="_blank"
+       style="
+         display: inline-block;
+         padding: 10px 20px;
+         background-color: #0088cc;
+         color: white;
+         text-decoration: none;
+         font-weight: bold;
+         border-radius: 6px;
+       ">
+       📡 JOIN TELEGRAM CHANNEL
+    </a>
+  </div>
+
+</section>
+
+<section class="intro">
+
+    <h2><code>// DarkMesh LoRa Channel</code></h2>
+    
+    <p>
+        Il nome del canale è <strong>case sensitive</strong>, copiatelo tutto maiuscolo esattamente così com'è.
+        Questa chat è pensata principalmente per utenti che utilizzano l'app <strong>DarkMesh</strong>,
+        ma può essere utilizzata anche da chi usa l'app ufficiale.
+    </p>
+
+    <hr>
+
+    <p>
+        <strong style="font-size:20px">CHAN NAME</strong><br>
+        <code style="color:#8b0000; font-weight:bold; font-size:15px">DARKMESH</code>
+    </p>
+
+    <p>
+        <strong style="font-size:20px">PSK</strong><br>
+        <code style="color:#8b0000; font-weight:bold; font-size:15px;
+            word-break:break-all;
+            overflow-wrap:anywhere;">
+            0aENg6+cdWcRyOeUO7H5rjJ1DteO+6I+wCMDYYfuSTc=
+        </code>
+    </p>
+
+    <hr>
+
+</section>
+
+<section class="intro">
+
+    <h2><code>// DarkMesh LoRa COMPRESSED</code></h2>
+    
+    <p>
+        Usate solo messaggi compressi in questo canale per sperimentazione, dovete usare l'APP e il FW di DarkMesh all'ultima versione.
+    </p>
+
+    <hr>
+
+    <p>
+        <strong style="font-size:20px">CHAN NAME</strong><br>
+        <code style="color:#8b0000; font-weight:bold; font-size:15px">DARKMESH.7z</code>
+    </p>
+
+    <p>
+        <strong style="font-size:20px">PSK</strong><br>
+        <code style="color:#8b0000; font-weight:bold; font-size:15px;
+            word-break:break-all;
+            overflow-wrap:anywhere;">
+            LX6ANkFYWN5CZh5Di06jdP4AfzULkC3XE5LUHSVE4cU=
+        </code>
+    </p>
+
+    <hr>
+
+</section>
+
+<section class="intro">
+   <h2>// DarkMesh Database Nodi</h2>
+     <ul>
+          <li>
+        <a href="nodes_database/fav_LAZIO_ROUTER_28-02-2026.dmdb">Nodi Router Lazio Febbraio 2026</a>
+           </li>
+
+      </ul>
+
+</section>
+
+
+<section class="intro">
+   <h2>// Materiali Testati</h2>
+   
+   <ul>
+      <li>
+       <a href="/radios.html">Ricetrasmittenti LoRa</a>
+     </li>
+     
+      <li>
+       <a href="/antennas.html">Antenne</a>
+     </li>
+     
+     
+     <li>
+       <a href="/bandpass.html">Filtri Band Pass</a>
+     </li>
+     
+   </ul>
+
+</section>
+
+
+<section class="intro">
+   <h2>// Guide</h2>
+   
+   <ul>
+      <li>
+       <a href="/guides/jpole_burchio.html">JPOLE by Burchio</a>
+     </li>
+     
+   </ul>
+
+</section>
+
+
+<section class="intro">
+  
+  <p>
+    DarkMesh è cresciuto nel tempo ed è oggi adottato da numerosi utenti. 
+    La sua evoluzione richiede manutenzione continua, aggiornamenti costanti e nuove funzionalità (sviluppato e manutenuto solamente da me). 
+    Un supporto volontario contribuisce a sostenere lo sviluppo e a garantirne la continuità nel lungo periodo.
+  </p>
+
+
+  <div style="text-align: center;">
+    <a href="https://ko-fi.com/darkmesh"
+       target="_blank"
+       rel="noopener noreferrer">
+       
+      <img 
+        src="https://frompage2screen.com/wp-content/uploads/2024/01/buymeakofi.webp"
+        alt="Dona con PayPal"
+        style="width: 180px; height: auto; display: block; margin: 0 auto;"
+      >
+      
+    </a>
+  </div>
+
+</section>
+
+
+
+
+<section class="intro" style="display:none">
+   <h2>// Mesh Shop</h2>
+   <p>
+    Nel tempo, il <strong>Mesh Shop</strong> ospiterà una sezione dedicata ai progetti <strong>DIY</strong> 
+    (Do It Yourself) realizzati per la community.  
+    Saranno disponibili modelli <strong>stampabili in 3D</strong> di nodi portatili alimentati a batteria, 
+    enclosure stagni per installazioni fisse e accessori modulari per antenne e pannelli solari.  
+    Ogni progetto includerà file STL, schema di collegamento, distinta componenti e linee guida 
+    per l’assemblaggio.  
+    L’obiettivo è costruire una rete <em>autonoma, resiliente e interamente open-hardware</em>, 
+    alla portata di chiunque voglia sperimentare.
+  </p>
+  
+  
+  <div class="shop-btn-container">
+    <a href="#shop" class="shop-btn">🛠️ MESH SHOP</a>
+  </div>
+</section>
+
+
+
+  </main>
+
+  <footer>
+    <p>DarkMesh 2026 — Chris</p>
+  </footer>
+</body>
+</html>
